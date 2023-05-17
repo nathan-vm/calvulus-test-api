@@ -1,0 +1,30 @@
+version: '3.7'
+networks:
+  calvulus-nw:
+services:
+  calvulus-mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - 27017:27017
+    networks: 
+      - calvulus-nw
+  calvulus-server:
+    build: .
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=8000
+    ports:
+      - 8000:8000
+      - 9229:9229
+    networks: 
+      - calvulus-nw
+    depends_on:
+      - calvulus-mongodb
+    command: yarn dev

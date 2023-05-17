@@ -1,0 +1,22 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "standard-with-typescript",
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+        "prettier"
+    ],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "project": "tsconfig.json",
+        "sourceType": "module"
+    },
+    "rules": {
+        "prettier/prettier": "error"
+    }
+}
